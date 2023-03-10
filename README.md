@@ -1,0 +1,1 @@
+Edure Movie Management Application
