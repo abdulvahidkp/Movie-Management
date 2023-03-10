@@ -1,13 +1,17 @@
 import "./App.css";
 import MovieForm from "./components/movieForm/MovieForm";
-import MovieListPart from "./components/movieListPart/MovieListPart";
+import MovieList from "./components/movieList/MovieList";
+import MovieSearch from "./components/movieSearch/MovieSearch";
 
 function App() {
   return (
     <main className="main">
       <div className="app">
         <MovieForm />
-        <MovieListPart />
+        <div className="w-1/2 flex flex-col items-center">
+          <MovieSearch />
+          <MovieList />
+        </div>
       </div>
     </main>
   );
