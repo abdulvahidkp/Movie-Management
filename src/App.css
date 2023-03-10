@@ -1,6 +1,14 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .main{
+    @apply sm:container mx-auto
+  }
+
+  .app {
+    @apply flex mt-0 md:mt-24 gap-16 flex-col md:flex-row
+  }
+  
 }

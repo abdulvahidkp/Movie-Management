@@ -1,15 +1,16 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import "./App.css";
+import MovieForm from "./components/movieForm/MovieForm";
+import MovieListPart from "./components/movieListPart/MovieListPart";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="App">
-      <h1>helloWorld</h1>
-    </div>
-  )
+    <main className="main">
+      <div className="app">
+        <MovieForm />
+        <MovieListPart />
+      </div>
+    </main>
+  );
 }
 
-export default App
+export default App;
