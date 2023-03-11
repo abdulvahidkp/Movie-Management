@@ -23,9 +23,9 @@ The application stores all movie data in localStorage using redux-persist to ens
 The UI is designed with Tailwind CSS, providing an attractive and responsive user interface.
 The state management is handled by Redux Toolkit, making it easy to manage and maintain the application state.
 ## Technologies Used
-ReactJS
-Tailwind CSS
-Redux Toolkit
-Redux Persist
-Conclusion
-## This is a simple yet powerful movie management application built with ReactJS. With its intuitive user interface and robust state management capabilities, it's an excellent choice for anyone looking to manage their movie collection. So, clone the repository, give it a try, and feel free to contribute to the project!
+* ReactJS
+* Tailwind CSS
+* Redux Toolkit
+* Redux Persist
+* Conclusion
+### This is a simple yet powerful movie management application built with ReactJS. With its intuitive user interface and robust state management capabilities, it's an excellent choice for anyone looking to manage their movie collection. So, clone the repository, give it a try, and feel free to contribute to the project!
