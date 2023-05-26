@@ -6,38 +6,41 @@ import { setMovies } from "../../redux/features/movieSlice";
 function MovieForm() {
   const [formData, setFormData] = useState({
     name: "",
-    rating: 0,
+    rating: "",
     duration: "",
   });
   const [err, setErr] = useState(false);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleInputChange = (e) => {
-    setErr(false)
+    setErr(false);
     const { name, value } = e.target;
-    if (name === "rating" && value > 100) {
-      setFormData({
-        ...formData,
-        [name]: 100,
-      });
-    } else if (name === 'rating' && value < 0){
-      return
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
+
+    let parsedValue = value;
+    if (name === "rating") {
+      parsedValue = parseInt(value);
+      if (isNaN(parsedValue)) {
+        parsedValue = null;
+      } else if (parsedValue > 100) {
+        parsedValue = 100;
+      }
     }
+
+    setFormData({
+      ...formData,
+      [name]: parsedValue ?? "",
+    });
   };
 
   function validateFormatTime(inputValue) {
-    const regex = /^([1-9]\d*\.?\d*|\d*\.\d+)(m|h)$/; // regex pattern for valid time values
+    const regex = /^([1-9]\d*\.?\d*|\d+\.\d+)(m|h)$/; // regex pattern for valid time values
     const match = regex.exec(inputValue); // extract numeric value and unit from input value
     if (!match) return null;
-    const value = parseFloat(match[1]); // parse numeric value as a float
+    const value = parseFloat(match[1]);// parse numeric value as a float
     const unit = match[2]; // get the unit (m or h)
     if (unit === "m") {
+      console.log('value/60',(value/60).toFixed());
       return (value / 60).toFixed(1); // convert minutes to hours and format to 1 decimal place
     }
     return value; // return value in hours if it's already in hours
@@ -46,16 +49,16 @@ function MovieForm() {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     if (!formData.name || !formData.duration || !formData.rating) return;
-    const time = validateFormatTime(formData.duration);
-    if (!time) return setErr(true)
     
-    dispatch(setMovies({...formData,duration:time}))
+    const time = validateFormatTime(formData.duration);
+    if (!time) return setErr(true);
+    console.log('time h or m :',time);
+    dispatch(setMovies({ ...formData, duration: time }));
     setFormData({
       name: "",
-      rating: 0,
+      rating: "",
       duration: "",
-    })
-    
+    });
   };
 
   return (
@@ -95,7 +98,7 @@ function MovieForm() {
           Duration
         </label>
         <input
-          type="text"
+          type="string"
           name="duration"
           value={formData.duration}
           onChange={handleInputChange}
@@ -104,13 +107,12 @@ function MovieForm() {
           required
         />
       </div>
-      { 
-        err &&
+      {err && (
         <div className="flex items-center gap-2 bg-gray-100/50 p-3 rounded text-red-500 border-red-500 border my-6">
           <Warning />
           <p>Please specify the time in hours or minutes (e.g. 2.5h or 150m)</p>
         </div>
-      }
+      )}
       <button className="bg-green-600 hover:bg-green-700 duration-300 shadow-md mt-2 font-bold p-3 px-5 rounded text-white float-right" type="submit">
         Add Movie
       </button>

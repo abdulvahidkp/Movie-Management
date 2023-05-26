@@ -1,14 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 function compareByDurationDesc(a, b) {
-    if (a.duration < b.duration) {
-      return 1;
-    }
-    if (a.duration > b.duration) {
-      return -1;
-    }
-    return 0;
+  const durationA = Number(a.duration);
+  const durationB = Number(b.duration);
+
+  if (durationA < durationB) {
+    return 1;
   }
+  if (durationA > durationB) {
+    return -1;
+  }
+  return 0;
+}
   
 
 const moviesSlice = createSlice({
@@ -18,7 +21,6 @@ const moviesSlice = createSlice({
     },
     reducers:{
         setMovies:(state,action) => {
-            console.log(action.payload)
             state.movies.push(action.payload)
             state.movies.sort(compareByDurationDesc)
         }
