@@ -2,6 +2,8 @@
 
 This is a ReactJS application for managing movies. You can add new movies with their name, rating out of 100, and duration in hours or minutes. The application uses localStorage for storing movie data and redux-persist for persistent state management. The UI is designed with Tailwind CSS, and state management is done with Redux Toolkit.
 
+[Link to the hosted site](https://moviemangement.onrender.com/)
+
 ## How to run
 To run this application, first, clone the repository to your local machine. Then, navigate to the project directory and run the following command:
 
